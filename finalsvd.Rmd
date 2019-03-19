@@ -2,15 +2,22 @@
 title: "Image Compression Using SVD"
 author: "Himank Jain"
 date: "March 12, 2019"
-output: pdf_document
+output:
+  html_document:
+    df_print: paged
 ---
-#Content:
+
+# Sypnosis:
+
+In the era of big data where data is being accumulated with high velocity and veracity with sources like internet, social networking sites, log files, banking sector, etc. Most storage in big data contents is occupied by images & video files. In this context the concept of image compression may be considered for data storage so that enormous amount of memory space can be saved. In this document, we have followed Singular Vector Decomposition from linear algebra to compress the image by considering both gray scale and color images. Further we have analyzed the effectiveness of compression by considering different sets of singular vectors in SVD. This work can be useful in data storage and transfer of data over the internet.
 This document contains a guide on image compression using Single Value Decomposition in R. It requires basic prior knowledge in Linear Algebra and R programming language.
 
 # SINGLE VALUE DECOMPOSITION
 
 In linear algebra, the singular-value decomposition (SVD) is a factorization of a matrix.SVD decomposes a $m*n$ matrix into three components i.e $UDV^*$ where $U$ is of size $m*m$, $D$ is of size $m*n$ and is diagonal, and $V^*$ is of size $n*n$. The columns of $U$ and the columns of $V$ are called the left-singular vectors and right-singular vectors of the original matrix.,$$M = UDV^*$$
-##Calculating SVD:
+
+## Calculating SVD:
+
 Singular value decomposition can be can be computed using the following observations:
 * The left singular vectors of $M$ are a set of orthonormal eigenvectors of $MM*$
 * The right-singular vectors of $M$ are a set of orthonormal eigenvectors of $M*M$
@@ -19,13 +26,15 @@ Singular value decomposition can be can be computed using the following observat
 For a better understanding and detailed guide on calculating SVD of a matrix refer:  
 [SVD examples](https://en.wikipedia.org/wiki/Singular_value_decomposition#Example)
 
-##Applications of SVD
+## Applications of SVD
+
 Applications that employ the SVD include computing the pseudoinverse, least squares fitting of data, multivariable control, matrix approximation, and determining the rank, range and null space of a matrix
 and **image compression**.
 
-###Now that we know a little about Single Value Decomposition, it's time to move onto image compression in R...
+####Now that we know a little about Single Value Decomposition, it's time to move onto image compression in R...
 
 #Image compression in R using SVD:
+
 * Before We think of compressing image, It's important to understand basic concepts of colors in digital images.
 The colors white (or yellow or any other color) that you see in your monitor is not exactly how it appears. Infact there is actually no white or yellow pigment in your screen.What you are seeing is actually a mixture of RGB (red,green and blue) displayed by small pixels in your screen.These red, green, and blue pixels range in saturation on a scale of 0 to 255; 0 being completely off, and 255 being completely on.
 * A grayscale image is one in which the value of each pixel is a single sample representing only an amount of light, that is, it carries only intensity information.
@@ -35,6 +44,7 @@ The colors white (or yellow or any other color) that you see in your monitor is 
   + compression in color images
  
 ##1.Gray scale compression:
+
 Original Image :*FLOWERS*
 ```{r echo=FALSE, message=FALSE}
 par(mfrow=c(1,1))
@@ -93,7 +103,9 @@ plot(as.cimg(megray),main="(d) Full image",axes=FALSE)
 ```
 The original image matrix has rank 187 and compressed image matrices have ranks 5,10,25,35 and 50.
 We can observe that even after reducing the rank by more than 150,we still have almost same quality image.
+
 ##2.Color image Compression:
+
 Loading the image:
 ```{r ,message=FALSE}
 library(imager)
@@ -154,5 +166,6 @@ plot(comp,axes=FALSE,main=paste("Rank=",j))
 plot(image,axes=FALSE,main="Rank=187")
 ```
 
-#Conclusion:
+# Results:
+
 Image compression is minimizing the size in bytes of a graphics file without degrading the quality of the image to an unacceptable level.From above observations we conclude that Single Value Decomposition can be used to compress images by reducing the image matrix ranks. We can preserve most of the quality in the image even after compressing it to a miniscule amount. We observe this both in grayscale images and color images.The reduction in file size allows more images to be stored in a given amount of disk or memory space. It also reduces the time required for images to be sent over the Internet or downloaded from Web page. Ever since the dawn of internet graphical data generation has increased exponentially. The emergence of social media has also played a huge role in this. Hence it has become important that we optimize our data in terms of size and compress files as much as possible without losing much value out of it. 
