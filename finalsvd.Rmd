@@ -8,7 +8,7 @@ output:
     df_print: paged
 ---
 
-# Sypnosis:
+# Synopsis:
 
 In the era of big data where data is being accumulated with high velocity and veracity with sources like internet, social networking sites, log files, banking sector, etc. Most storage in big data contents is occupied by images & video files. In this context the concept of image compression may be considered for data storage so that enormous amount of memory space can be saved. In this document, we have followed Singular Vector Decomposition from linear algebra to compress the image by considering both gray scale and color images. Further we have analyzed the effectiveness of compression by considering different sets of singular vectors in SVD. This work can be useful in data storage and transfer of data over the internet.
 This document contains a guide on image compression using Single Value Decomposition in R. It requires basic prior knowledge in Linear Algebra and R programming language.
